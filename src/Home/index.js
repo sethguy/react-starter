@@ -3,7 +3,7 @@ import { loadEvents } from './actions'
 import { connect } from 'react-redux';
 
 import './home.css'
-import { Menu } from './Menu';
+import { Menu, MenuItem } from './Menu';
 
 
 
@@ -38,11 +38,17 @@ class Home extends Component {
         })
     }
     render() {
-
-        const {x,y} = this.state.contextMenuPosition;
+        const { x, y } = this.state.contextMenuPosition;
         return (
             <div className="h-100" onContextMenu={this.onContextMenuClick} >
-                {this.state.showContextMenu && <Menu {...{ x, y, closeContextMenu: this.onCloseContextMenu}} ></Menu> }
+                {this.state.showContextMenu && <Menu {...{ x, y, closeContextMenu: this.onCloseContextMenu }} >
+                    <MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                    </MenuItem>
+                    <MenuItem></MenuItem>
+
+                </Menu>}
             </div>
         );
     }
