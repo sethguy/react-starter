@@ -1,9 +1,19 @@
-.context-menu{
-
-
+.context-menu {
   position: absolute;
+  height: 300px;
+  width: 250px;
+  background-color: white;
+}
 
+.context-menu-item {
+  position: relative;
+  height: 20px;
+  overflow:visible;
+}
+
+.sub-context-menu{
+
+  position:absolute;
   height:300px;
   width:250px;
-  background-color: white;
 }

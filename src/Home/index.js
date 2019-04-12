@@ -47,7 +47,6 @@ class Home extends Component {
                         <MenuItem></MenuItem>
                     </MenuItem>
                     <MenuItem></MenuItem>
-
                 </Menu>}
             </div>
         );

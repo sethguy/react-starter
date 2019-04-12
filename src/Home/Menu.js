@@ -23,8 +23,8 @@ export class Menu extends Component {
       left: `${this.props.x}px`,
     }} className="context-menu border">
       {this.props.children && this.props.children.map(menuChild => {
-        console.log("TCL: Menu -> menuChild", )
-        if (menuChild.type.name ==='MenuItem' && menuChild.props.children){
+        console.log("TCL: Menu -> menuChild")
+        if (menuChild.type.name === 'MenuItem' && menuChild.props.children) {
 
           console.log("TCL: Menu -> do sub menu")
 
@@ -44,10 +44,36 @@ export class MenuItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      showSubContextMenu: false,
     }
   }
   render() {
-    return (<div className="context-menu-item border">  </div>);
+    return (
+    <div
+    
+      onClick={(event)=>{
+
+          if(this.props.children){
+
+            this.setState({
+              showSubContextMenu:true,
+            })
+          }
+
+      }}
+    className="context-menu-item border">
+      {this.props.children &&
+        this.state.showSubContextMenu &&
+        <div
+          style={{
+            top: `100%`,
+            left: `100%`,
+          }}
+          className="sub-context-menu border border-secondary">
+
+
+        </div>}
+    </div>
+    );
   }
 }
