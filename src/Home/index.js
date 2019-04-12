@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import './home.css'
 import { Menu } from './Menu';
 
+
+
+
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showContextMenu: false,
             contextMenuPosition: { x: 0, y: 0 }
         }
     }

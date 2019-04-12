@@ -4,6 +4,9 @@ export class Menu extends Component {
   componentDidMount() {
     document.body.addEventListener('mousedown', this.onAnyClick);
   }
+  componentWillUnmount(){
+    document.body.removeEventListener('mousedown',this.onAnyClick) 
+  }
   onAnyClick = (event) => {
     if (this.node && this.node.contains(event.target)) {
       return;
@@ -19,5 +22,14 @@ export class Menu extends Component {
       top: `${this.props.y}px`,
       left: `${this.props.x}px`,
     }} className="context-menu border"> faske </div>);
+  }
+}
+
+
+
+
+export class MenuItem extends Component {
+  render() {
+    return (<div className="context-menu-item border">  </div>);
   }
 }
