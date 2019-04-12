@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { loadEvents } from './actions'
 import { connect } from 'react-redux';
-
 import './home.css'
 import { Menu, MenuItem } from './Menu';
-
-
-
 
 class Home extends Component {
     constructor(props) {
@@ -16,6 +12,8 @@ class Home extends Component {
         }
     }
     openContextMenu = (event) => {
+
+        
         this.setState({
             showContextMenu: true,
             contextMenuPosition: { x: event.x || 0, y: event.y || 0 }
@@ -42,11 +40,17 @@ class Home extends Component {
         return (
             <div className="h-100" onContextMenu={this.onContextMenuClick} >
                 {this.state.showContextMenu && <Menu {...{ x, y, closeContextMenu: this.onCloseContextMenu }} >
-                    <MenuItem>
-                        <MenuItem></MenuItem>
-                        <MenuItem></MenuItem>
+                    <MenuItem title="cell Types" >
+                        <MenuItem title="cell Type 1" >
+                            <MenuItem title="option 1" ></MenuItem>
+                            <MenuItem title="option 2" ></MenuItem>
+                        </MenuItem>
+                        <MenuItem title="cell Type 2" ></MenuItem>
                     </MenuItem>
-                    <MenuItem></MenuItem>
+                    <MenuItem title="input Types" >
+                        <MenuItem title=" input option 1" ></MenuItem>
+                        <MenuItem title=" input option 2" ></MenuItem>
+                    </MenuItem>
                 </Menu>}
             </div>
         );
