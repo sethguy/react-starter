@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './home.css'
 
 class Home extends Component {
+    node;
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +18,15 @@ class Home extends Component {
             .props
             .loadEvents({})
 
-       // document.body.addEventListener('mousedown', this.closeContextMenu)
+        document.body.addEventListener('mousedown', this.onAnyClick)
+    }
+    onAnyClick = (event) =>{
+
+
+        if (this.node && this.node.contains(event.target)){
+            return
+        }
+        this.closeContextMenu()
     }
     closeContextMenu = () => {
 
@@ -52,6 +61,8 @@ class Home extends Component {
         return (
             <div className="h-100" onContextMenu={this.onContextMenuClick} >
                 {this.state.showContextMenu && <div 
+                    ref = {node=>this.node=node}
+                    
                     style={{
                         top: `${this.state.contextMenuPosition.y}px`,
                         left: `${this.state.contextMenuPosition.x}px`,
