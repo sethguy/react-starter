@@ -10,7 +10,12 @@ class Home extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="h-100" onContextMenu={(event)=>{
+			console.log("TCL: Home -> render -> event", event)
+
+
+                
+            }} >
                 <div>
                     <p>
                         HOme
