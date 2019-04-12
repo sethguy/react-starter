@@ -52,32 +52,25 @@ export class MenuItem extends Component {
   openSubContextMenu = (event) => {
 
     const { screenX, screenY, clientX, clientY, pageX, pageY, movementX, movementY } = event
-    console.log("TCL: render ->  { screenX, screenY, clientX, clientY, pageX, pageY, movementX, movementY } ", { screenX, screenY, clientX, clientY, pageX, pageY, movementX, movementY })
 
     const midwidth = window.innerWidth / 2
     const midheight = window.innerHeight / 2
-
-
     let popStyle = {
       top: '100%',
       left: '100%'
     }
-
-
     if (clientX > midwidth) {
       popStyle = {
         ...popStyle,
         left: '-100%'
       }
     }
-
     if (clientY > midheight) {
       popStyle = {
         ...popStyle,
         top: '-100%'
       }
     }
-
     this.setState({
       showSubContextMenu: true,
       popStyle,
@@ -89,7 +82,6 @@ export class MenuItem extends Component {
       <div
         onClick={(event) => {
           event.stopPropagation();
-
           if (this.props.children) {
             this.openSubContextMenu(event)
           }
