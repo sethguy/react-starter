@@ -51,6 +51,19 @@ class Home extends Component {
                         <MenuItem title=" input option 1" ></MenuItem>
                         <MenuItem title=" input option 2" ></MenuItem>
                     </MenuItem>
+                    <MenuItem title="input2 Types" >
+                        <MenuItem title=" input2 option 1" >
+                            <MenuItem title=" input3 option 1" ></MenuItem>
+                            <MenuItem title=" input3 option 23" ></MenuItem>
+                            <MenuItem title=" input3 option 13" ></MenuItem>
+                            <MenuItem title=" input3 option 24" ></MenuItem>
+
+                            <MenuItem title=" input3 option 155" ></MenuItem>
+                            <MenuItem title=" input3 option 266" ></MenuItem>
+                        
+                        </MenuItem>
+                        <MenuItem title=" input2 option 2" ></MenuItem>
+                    </MenuItem>
                 </Menu>}
             </div>
         );

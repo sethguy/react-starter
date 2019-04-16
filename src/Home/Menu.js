@@ -18,17 +18,20 @@ export class Menu extends Component {
     this.props.closeContextMenu()
   };
   render() {
-    return (<div ref={node => this.node = node} style={{
-      top: `${this.props.y}px`,
-      left: `${this.props.x}px`,
-    }} className="context-menu border">
-      {this.props.children && this.props.children.map(menuChild => {
-        if (menuChild.type.name === 'MenuItem' && menuChild.props.children) {
-          console.log("TCL: Menu -> do sub menu")
-        }
-        return menuChild;
-      })}
-    </div>);
+    return (
+      <div
+        className="context-menu-position-wrap border"
+        style={{
+          top: `${this.props.y}px`,
+          left: `${this.props.x}px`,
+        }}
+      >
+        <div ref={node => this.node = node}
+          className="context-menu border">
+          {this.props.children}
+        </div>
+      </div>
+    );
   }
 }
 
@@ -38,7 +41,6 @@ export class MenuItem extends Component {
     this.state = {
       showSubContextMenu: false,
       popStyle: {
-        top: '100%',
         left: '100%'
       }
     }
@@ -56,7 +58,6 @@ export class MenuItem extends Component {
     const midwidth = window.innerWidth / 2
     const midheight = window.innerHeight / 2
     let popStyle = {
-      top: '100%',
       left: '100%'
     }
     if (clientX > midwidth) {
@@ -87,7 +88,7 @@ export class MenuItem extends Component {
           }
         }}
         className="context-menu-item border">
-        <p>{this.props.title}</p>
+        <span>{this.props.title}</span>
         {this.props.children &&
           this.state.showSubContextMenu &&
           <SubMenu {...{ popStyle: this.state.popStyle, closeContextMenu: this.onCloseSubMenu, subMenuItems: this.props.children }} ></SubMenu >}
@@ -125,19 +126,20 @@ export class SubMenu extends Component {
   render() {
     return (
       <div
-
         onClick={(event) => {
           event.stopPropagation();
-
-      
         }}
-
-        ref={node => this.node = node}
         style={{
-       ...this.props.popStyle,
+          position: 'absolute',
+          ...this.props.popStyle,
         }}
-        className="sub-context-menu border border-secondary">
-        {this.props.subMenuItems}
+        className="sub-context-menu-abs">
+        <div
+          onClick={(event) => event.stopPropagation()}
+          ref={node => this.node = node}
+          className="sub-context-menu border border-secondary">
+          {this.props.subMenuItems}
+        </div>
       </div>
     );
   }

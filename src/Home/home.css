@@ -1,19 +1,25 @@
-.context-menu {
+.context-menu-position-wrap {
   position: absolute;
-  height: 300px;
+}
+
+.context-menu {
+  position: relative;
   width: 250px;
   background-color: white;
 }
 
 .context-menu-item {
   position: relative;
-  height: 20px;
-  overflow:visible;
+  min-height: 20px;
+  margin: 5px 0;
+  overflow: visible;
 }
 
-.sub-context-menu{
+.sub-context-menu {
+  position: relative;
+  width: 250px;
+}
 
-  position:absolute;
-  height:300px;
-  width:250px;
+.sub-context-menu-abs {
+  position: absolute;
 }
