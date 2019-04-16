@@ -13,7 +13,6 @@ export class Menu extends Component {
     }
     this.closeContextMenu();
   };
-
   closeContextMenu = () => {
     this.props.closeContextMenu()
   };
@@ -38,14 +37,18 @@ export class Menu extends Component {
 export class MenuItem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showSubContextMenu: false,
       popStyle: {
+        top: 0,
+
         left: '105%'
       }
     }
   }
   onCloseSubMenu = () => {
+
     this.setState({
       showSubContextMenu: false,
     })
@@ -72,6 +75,7 @@ export class MenuItem extends Component {
         top: '-105%'
       }
     }
+
     this.setState({
       showSubContextMenu: true,
       popStyle,
@@ -81,12 +85,21 @@ export class MenuItem extends Component {
   render() {
     return (
       <div
+        ref={node => this.node = node}
+
         onClick={(event) => {
           event.stopPropagation();
           if (this.props.children) {
             this.openSubContextMenu(event)
           }
         }}
+        onMouseOver={(event) => {
+          event.stopPropagation();
+          if (this.props.children && !this.state.showSubContextMenu) {
+            this.openSubContextMenu(event)
+          }
+        }}
+
         className="context-menu-item border">
         <span>{this.props.title}</span>
         {this.props.children &&
@@ -107,8 +120,12 @@ export class SubMenu extends Component {
   }
   componentDidMount() {
     document.body.addEventListener('mousedown', this.onAnyClick);
+
+    document.body.addEventListener('mouseover', this.onAnyClick);
   }
   componentWillUnmount() {
+    document.body.removeEventListener('mouseover', this.onAnyClick)
+
     document.body.removeEventListener('mousedown', this.onAnyClick)
   }
 

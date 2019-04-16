@@ -26,10 +26,7 @@ class Home extends Component {
 
     }
     componentDidMount() {
-
         this.buildDemoList();
-
-
     }
     getMenuItems = () => {
         const blocks = new Array(5).fill("").map(space => {
@@ -40,16 +37,13 @@ class Home extends Component {
         })
         return blocks;
     }
-
     listWithMenus = () => {
-
         return this.getMenuItems().map(menuitem => {
             return {
                 ...menuitem,
                 subs: this.getMenuItems()
             }
         })
-
     }
 
     buildDemoList = () => {
@@ -76,17 +70,11 @@ class Home extends Component {
                 })
             }
         });
-
-
         this.setState({
             menulist: toplist
         })
-
-
     }
     openContextMenu = (event) => {
-
-
         this.setState({
             showContextMenu: true,
             contextMenuPosition: { x: event.x || 0, y: event.y || 0 }
@@ -97,7 +85,6 @@ class Home extends Component {
             showContextMenu: false,
             contextMenuPosition: { x: 0, y: 0 }
         });
-
     };
     onContextMenuClick = (event) => {
         event.preventDefault()
