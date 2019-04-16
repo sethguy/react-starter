@@ -3,13 +3,43 @@ import { loadEvents } from './actions'
 import { connect } from 'react-redux';
 import './home.css'
 import { Menu, MenuItem } from './Menu';
+import {randos} from './randos'
 
+const getRandoConbo = () =>{
+
+    const r1 = Math.floor(Math.random() * randos.length-1)
+    const r2 = Math.floor(Math.random() * randos.length-1)
+
+    const wordOne = randos[r1]
+    const wordtwo = randos[r2]
+
+    const word = `${wordOne}-${wordtwo}`
+    return word;
+}
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             contextMenuPosition: { x: 0, y: 0 }
         }
+    }
+
+    getMenuItems = (subs=[]) =>{
+        const blocks = new Array(5).fill("").map(space => {
+            return {
+                title: getRandoConbo(),
+                subs:[...subs]
+            }
+        })
+        return blocks;
+    }
+
+    buildDemoList = () =>{
+
+
+
+
+
     }
     openContextMenu = (event) => {
 
