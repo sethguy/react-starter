@@ -3,12 +3,13 @@ import { loadEvents } from './actions'
 import { connect } from 'react-redux';
 import './home.css'
 import { Menu, MenuItem } from './Menu';
-import {randos} from './randos'
+import { randos } from './randos'
 
-const getRandoConbo = () =>{
 
-    const r1 = Math.floor(Math.random() * randos.length-1)
-    const r2 = Math.floor(Math.random() * randos.length-1)
+const getRandoConbo = () => {
+
+    const r1 = Math.floor(Math.random() * randos.length - 1)
+    const r2 = Math.floor(Math.random() * randos.length - 1)
 
     const wordOne = randos[r1]
     const wordtwo = randos[r2]
@@ -22,28 +23,70 @@ class Home extends Component {
         this.state = {
             contextMenuPosition: { x: 0, y: 0 }
         }
-    }
 
-    getMenuItems = (subs=[]) =>{
+    }
+    componentDidMount() {
+
+        this.buildDemoList();
+
+
+    }
+    getMenuItems = () => {
         const blocks = new Array(5).fill("").map(space => {
             return {
                 title: getRandoConbo(),
-                subs:[...subs]
+                subs: []
             }
         })
         return blocks;
     }
 
-    buildDemoList = () =>{
+    listWithMenus = () => {
+
+        return this.getMenuItems().map(menuitem => {
+            return {
+                ...menuitem,
+                subs: this.getMenuItems()
+            }
+        })
+
+    }
+
+    buildDemoList = () => {
+
+        const toplist = this.getMenuItems().map(menuitem => {
+
+            return {
+                ...menuitem,
+                subs: this.getMenuItems().map(menuitem => {
+                    return {
+                        ...menuitem,
+                        subs: this.getMenuItems().map(menuitem => {
+                            return {
+                                ...menuitem,
+                                subs: this.getMenuItems().map(menuitem => {
+                                    return {
+                                        ...menuitem,
+                                        subs: this.getMenuItems()
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        });
 
 
-
+        this.setState({
+            menulist: toplist
+        })
 
 
     }
     openContextMenu = (event) => {
 
-        
+
         this.setState({
             showContextMenu: true,
             contextMenuPosition: { x: event.x || 0, y: event.y || 0 }
@@ -68,32 +111,34 @@ class Home extends Component {
     render() {
         const { x, y } = this.state.contextMenuPosition;
         return (
-            <div className="h-100" style={{backgroundColor:'black'}} onContextMenu={this.onContextMenuClick} >
+            <div className="h-100" style={{ backgroundColor: 'black' }} onContextMenu={this.onContextMenuClick} >
                 {this.state.showContextMenu && <Menu {...{ x, y, closeContextMenu: this.onCloseContextMenu }} >
-                    <MenuItem title="cell Types" >
-                        <MenuItem title="cell Type 1" >
-                            <MenuItem title="option 1" ></MenuItem>
-                            <MenuItem title="option 2" ></MenuItem>
-                        </MenuItem>
-                        <MenuItem title="cell Type 2" ></MenuItem>
-                    </MenuItem>
-                    <MenuItem title="input Types" >
-                        <MenuItem title=" input option 1" ></MenuItem>
-                        <MenuItem title=" input option 2" ></MenuItem>
-                    </MenuItem>
-                    <MenuItem title="input2 Types" >
-                        <MenuItem title=" input2 option 1" >
-                            <MenuItem title=" input3 option 1" ></MenuItem>
-                            <MenuItem title=" input3 option 23" ></MenuItem>
-                            <MenuItem title=" input3 option 13" ></MenuItem>
-                            <MenuItem title=" input3 option 24" ></MenuItem>
 
-                            <MenuItem title=" input3 option 155" ></MenuItem>
-                            <MenuItem title=" input3 option 266" ></MenuItem>
-                        
-                        </MenuItem>
-                        <MenuItem title=" input2 option 2" ></MenuItem>
-                    </MenuItem>
+                    {this.state.menulist && this.state.menulist.map(list => {
+                        return (
+                            <MenuItem title={list.title} >
+                                {list.subs && list.subs.map(sublist => {
+                                    return (
+                                        <MenuItem title={sublist.title} >
+                                            {sublist.subs && sublist.subs.map(subsublist => {
+                                                return (
+                                                    <MenuItem title={subsublist.title} >
+                                                        {subsublist.subs && subsublist.subs.map(subsubsublist => {
+                                                            return (
+                                                                <MenuItem title={subsubsublist.title} >
+                                                                </MenuItem>
+                                                            )
+                                                        })}
+                                                    </MenuItem>
+                                                )
+                                            })}
+                                        </MenuItem>
+                                    )
+                                })}
+                            </MenuItem>
+                        )
+                    })}
+
                 </Menu>}
             </div>
         );
