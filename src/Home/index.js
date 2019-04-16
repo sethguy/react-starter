@@ -38,7 +38,7 @@ class Home extends Component {
     render() {
         const { x, y } = this.state.contextMenuPosition;
         return (
-            <div className="h-100" onContextMenu={this.onContextMenuClick} >
+            <div className="h-100" style={{backgroundColor:'black'}} onContextMenu={this.onContextMenuClick} >
                 {this.state.showContextMenu && <Menu {...{ x, y, closeContextMenu: this.onCloseContextMenu }} >
                     <MenuItem title="cell Types" >
                         <MenuItem title="cell Type 1" >

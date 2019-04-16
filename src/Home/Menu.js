@@ -41,7 +41,7 @@ export class MenuItem extends Component {
     this.state = {
       showSubContextMenu: false,
       popStyle: {
-        left: '100%'
+        left: '105%'
       }
     }
   }
@@ -63,13 +63,13 @@ export class MenuItem extends Component {
     if (clientX > midwidth) {
       popStyle = {
         ...popStyle,
-        left: '-100%'
+        left: '-105%'
       }
     }
     if (clientY > midheight) {
       popStyle = {
         ...popStyle,
-        top: '-100%'
+        top: '-105%'
       }
     }
     this.setState({

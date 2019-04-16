@@ -11,13 +11,17 @@
 .context-menu-item {
   position: relative;
   min-height: 20px;
-  margin: 5px 0;
+  margin: 5px;
   overflow: visible;
+  cursor: pointer;
+  padding:5px;
 }
 
 .sub-context-menu {
   position: relative;
   width: 250px;
+  background-color: white;
+  z-index: 99;
 }
 
 .sub-context-menu-abs {
