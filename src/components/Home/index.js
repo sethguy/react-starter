@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {loadEvents} from './actions'
+import {loadEvents} from '../../actions/events'
 import {connect} from 'react-redux';
 
 class Home extends Component {
@@ -12,8 +12,6 @@ class Home extends Component {
         return (
             <div className="h-100" onContextMenu={(event)=>{
 			console.log("TCL: Home -> render -> event", event)
-
-
                 
             }} >
                 <div>

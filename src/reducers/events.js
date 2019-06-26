@@ -1,6 +1,6 @@
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'onEventData':
+    case 'setEventData':
       return {
         ...state,
         eventData: action.eventData
