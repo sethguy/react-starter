@@ -1,0 +1,16 @@
+image: node:8.11.2
+pipelines:
+   branches:
+      master:
+      - step:
+          caches:
+            - node
+          script:
+            - npm install
+            - npm install -g firebase-tools
+            - npm install  -g webpack webpack-cli
+            - npm test
+            - CI=false npm run build
+            - firebase deploy --token=$FIREBASE_TOKEN --project shayder-space --non-interactive
+            
+            
