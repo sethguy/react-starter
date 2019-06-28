@@ -11,6 +11,6 @@ pipelines:
             - npm install  -g webpack webpack-cli
             - npm test
             - CI=false npm run build
-            - firebase deploy --token=$FIREBASE_TOKEN --project shayder-space --non-interactive
+            - firebase deploy --token=$FIREBASE_TOKEN --project seth-demo-time --non-interactive
             
             
